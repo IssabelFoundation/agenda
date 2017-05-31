@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
     <head>
-        <title>Elastix</title>
+        <title>Issabel</title>
         <link rel="stylesheet" href="{$path}themes/{$THEMENAME}/styles.css">
         <link rel="stylesheet" href="{$path}themes/{$THEMENAME}/help.css">
         {$HEADER_LIBS_JQUERY}

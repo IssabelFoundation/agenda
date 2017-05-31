@@ -6,7 +6,7 @@
 <body>
 
 <h1>{$node_name}</h1>
-<p>The option "Address Book" of the menu "Agenda" shows a phone directory that contains internal and external phone numbers. The internal extensions are the ones that have been created in PBX module and they cannot be edited from this module. The external extension are the ones that has been created by the users from this module and don't belong to Elastix. To create an external extension click on "New Contact" button.</p>
+<p>The option "Address Book" of the menu "Agenda" shows a phone directory that contains internal and external phone numbers. The internal extensions are the ones that have been created in PBX module and they cannot be edited from this module. The external extension are the ones that has been created by the users from this module and don't belong to Issabel. To create an external extension click on "New Contact" button.</p>
 <p>The following figure shows a list of internal extensions:</p>
 <div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_address1.png" border="0" />
 <p>Figure 1</p></div>

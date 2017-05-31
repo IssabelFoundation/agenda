@@ -157,7 +157,6 @@ $arrLangModule=array(
 "notification_event" => "Notification d'énèvement",
 "invitation_event" => "Vous avez été invité à participer à cet évènement",
 "noResponseNotification" => "Ceci est une information et n'invite à aucune réponse",
-"copyrightNotification" => "",
 "Color" => "Couleur",
 "Dear User" => "Cher utilisateur",
 "Create New Event" => "Ajouter un énèvement",

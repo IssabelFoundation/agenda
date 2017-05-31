@@ -30,7 +30,7 @@
 <tr><td>Llamar a</td><td>Cuando el evento empiece la extensión configurada aquí sonará.</td></tr>
 <tr><td>Recordar</td><td>Un recordatorio antes que el evento empiece.</td></tr>
 <tr><td>Texto a voz</td><td>Escriba el mensaje que desea escuchar cuando reciba la llamada a la extensión configurada anunciando el evento. Esta opción esta disponible si el servicio Festival está habilitado. Para habilitarlo vaya a "PBX -> Herramientas -> Festival".</td></tr>
-<tr><td>Notificar a invitados por correo</td><td>Elastix automáticamente enviará un correo a esta lista antes de que el evento empiece.</td></tr>
+<tr><td>Notificar a invitados por correo</td><td>Issabel automáticamente enviará un correo a esta lista antes de que el evento empiece.</td></tr>
 </table>
 <br />
 <h2>Editar/Eliminar un evento existente</h2>

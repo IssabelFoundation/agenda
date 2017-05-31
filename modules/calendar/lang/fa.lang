@@ -159,7 +159,6 @@ $arrLangModule=array(
 "notification_event" => "Event Notification",
 "invitation_event" => "You have been invited to participate in this event",
 "noResponseNotification" => "This is a notice and should not answered",
-"copyrightNotification" => "Elastix is licensed under GPL by PaloSanto Solutions",
 "Color" => "Color",
 "Dear User" => "Dear User",
 "Create New Event" => "Create New Event",
