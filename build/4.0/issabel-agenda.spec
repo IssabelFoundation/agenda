@@ -21,7 +21,6 @@ Requires: coreutils
 Requires: festival
 
 Obsoletes: elastix-agenda
-Provides: elastix-agenda
 
 %description
 Issabel Module Agenda
