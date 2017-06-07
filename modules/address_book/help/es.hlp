@@ -6,7 +6,7 @@
 <body>
 
 <h1>{$node_name}</h1>
-<p>La opción "Libreta de Direcciones" del menú "Agenda" muestra un directorio telefónico que contiene números de teléfono internos y externos. Las extensiones internas son aquellas que han sido creadas en el módulo PBX y por lo tanto no pueden ser modificadas desde este módulo. Los números de teléfono externos son los que han sido creados por el usuario desde este módulo y no pertenecen a Elastix. Para agregar un número de teléfono externo haga click en el botón "Nuevo Contacto".</p>
+<p>La opción "Libreta de Direcciones" del menú "Agenda" muestra un directorio telefónico que contiene números de teléfono internos y externos. Las extensiones internas son aquellas que han sido creadas en el módulo PBX y por lo tanto no pueden ser modificadas desde este módulo. Los números de teléfono externos son los que han sido creados por el usuario desde este módulo y no pertenecen a Issabel. Para agregar un número de teléfono externo haga click en el botón "Nuevo Contacto".</p>
 <p>La siguiente figura muestra una lista de extensiones internas:</p>
 <div class="hlp_figures"><img src="../modules/{$node_id}/images/es_hlp_address1.png" border="0" />
 <p>Figura 1</p></div>
