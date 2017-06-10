@@ -31,7 +31,7 @@
 
     $arrConfModule['module_name']        = 'calendar';
     $arrConfModule['templates_dir']      = 'themes';
-    $arrConfModule['dsn_conn_database']  = "sqlite3:///$arrConf[elastix_dbdir]/calendar.db";
-    $arrConfModule['dsn_conn_database3'] = "sqlite3:///$arrConf[elastix_dbdir]/address_book.db";
+    $arrConfModule['dsn_conn_database']  = "sqlite3:///$arrConf[issabel_dbdir]/calendar.db";
+    $arrConfModule['dsn_conn_database3'] = "sqlite3:///$arrConf[issabel_dbdir]/address_book.db";
     $arrConfModule['dir_outgoing'] = '/var/spool/asterisk/outgoing';
 ?>

@@ -254,7 +254,7 @@ function handleJSON_searchcontacts($smarty, $module_name, $local_templates_dir)
 
     return $json->encode(searchCalendarContacts(
         getParameter('search'),
-        $_SESSION['elastix_user']
+        $_SESSION['issabel_user']
     ));
 }
 
@@ -267,8 +267,8 @@ function handleJSON_phone_numbers($smarty, $module_name, $local_templates_dir)
     require_once 'modules/address_book/libs/paloSantoAdressBook.class.php';
     load_language_module('address_book');
 
-    $pACL    = new paloACL(new paloDB($arrConf['elastix_dsn']['acl']));
-    $id_user = $pACL->getIdUser($_SESSION['elastix_user']);
+    $pACL    = new paloACL(new paloDB($arrConf['issabel_dsn']['acl']));
+    $id_user = $pACL->getIdUser($_SESSION['issabel_user']);
 
     $directory_type = (isset($_POST['select_directory_type']) && $_POST['select_directory_type']=='External')
         ? 'external' : 'internal';

@@ -37,9 +37,9 @@ mv modules/ $RPM_BUILD_ROOT/var/www/html/
 
 # The following folder should contain all the data that is required by the installer,
 # that cannot be handled by RPM.
-mkdir -p    $RPM_BUILD_ROOT/usr/share/elastix/module_installer/%{name}-%{version}-%{release}/
-mv setup/   $RPM_BUILD_ROOT/usr/share/elastix/module_installer/%{name}-%{version}-%{release}/
-mv menu.xml $RPM_BUILD_ROOT/usr/share/elastix/module_installer/%{name}-%{version}-%{release}/
+mkdir -p    $RPM_BUILD_ROOT/usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
+mv setup/   $RPM_BUILD_ROOT/usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
+mv menu.xml $RPM_BUILD_ROOT/usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
 
 %pre
 #se crea el directorio address_book_images para contener imagenes de contactos
@@ -52,17 +52,17 @@ if [ $res -ne 0 ]; then
     echo "creando directorio /var/www/address_book_images"
 fi
 
-mkdir -p /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/
-touch /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
+mkdir -p /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/
+touch /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
 if [ $1 -eq 2 ]; then
-    rpm -q --queryformat='%{VERSION}-%{RELEASE}' %{name} > /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
+    rpm -q --queryformat='%{VERSION}-%{RELEASE}' %{name} > /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/preversion_%{modname}.info
 fi
 
 %post
-pathModule="/usr/share/elastix/module_installer/%{name}-%{version}-%{release}"
+pathModule="/usr/share/issabel/module_installer/%{name}-%{version}-%{release}"
 
 # Run installer script to fix up ACLs and add module to Elastix menus.
-elastix-menumerge /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/menu.xml
+issabel-menumerge /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/menu.xml
 
 pathSQLiteDB="/var/www/db"
 mkdir -p $pathSQLiteDB
@@ -71,14 +71,14 @@ rm -f $pathModule/preversion_%{modname}.info
 
 if [ $1 -eq 1 ]; then #install
   # The installer database
-    elastix-dbprocess "install" "$pathModule/setup/db"
+    issabel-dbprocess "install" "$pathModule/setup/db"
 elif [ $1 -eq 2 ]; then #update
-    elastix-dbprocess "update"  "$pathModule/setup/db" "$preversion"
+    issabel-dbprocess "update"  "$pathModule/setup/db" "$preversion"
 fi
 
 # The installer script expects to be in /tmp/new_module
 mkdir -p /tmp/new_module/%{modname}
-cp -r /usr/share/elastix/module_installer/%{name}-%{version}-%{release}/* /tmp/new_module/%{modname}/
+cp -r /usr/share/issabel/module_installer/%{name}-%{version}-%{release}/* /tmp/new_module/%{modname}/
 chown -R asterisk.asterisk /tmp/new_module/%{modname}
 
 php /tmp/new_module/%{modname}/setup/installer.php
@@ -88,18 +88,18 @@ rm -rf /tmp/new_module
 rm -rf $RPM_BUILD_ROOT
 
 %preun
-pathModule="/usr/share/elastix/module_installer/%{name}-%{version}-%{release}"
+pathModule="/usr/share/issabel/module_installer/%{name}-%{version}-%{release}"
 if [ $1 -eq 0 ] ; then # Validation for desinstall this rpm
   echo "Delete Agenda menus"
-  elastix-menuremove "%{modname}"
+  issabel-menuremove "%{modname}"
 
   echo "Dump and delete %{name} databases"
-  elastix-dbprocess "delete" "$pathModule/setup/db"
+  issabel-dbprocess "delete" "$pathModule/setup/db"
 fi
 
 %files
 %defattr(-, root, root)
 %{_localstatedir}/www/html/*
-/usr/share/elastix/module_installer/*
+/usr/share/issabel/module_installer/*
 
 %changelog

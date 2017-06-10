@@ -21,7 +21,7 @@
                       &nbsp;{$title}</span>
                 <div class="name-right"></div>
             </div>
-           <input type="hidden" id="elastix_framework_module_id" value="{$module_name}" />
+           <input type="hidden" id="issabel_framework_module_id" value="{$module_name}" />
            <div id="elxneo-content">
               <div class="div_msg_errors" id="message_error" style="display:none;">
               <div style="float:left;">

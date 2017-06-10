@@ -32,7 +32,7 @@
 
 function _moduleContent(&$smarty, $module_name)
 {
-    //include elastix framework
+    //include issabel framework
     include_once "libs/paloSantoGrid.class.php";
     include_once "libs/paloSantoValidar.class.php";
     include_once "libs/paloSantoConfig.class.php";
@@ -145,7 +145,7 @@ function load_address_book_from_csv($smarty, $ruta_archivo, $pDB, $pDB_2)
     $Messages = "";
     $arrayColumnas = array();
     $pACL         = new paloACL($pDB_2);
-    $id_user      = $pACL->getIdUser($_SESSION["elastix_user"]);
+    $id_user      = $pACL->getIdUser($_SESSION["issabel_user"]);
 
     $result = isValidCSV($ruta_archivo, $arrayColumnas);
     if($result != 'true'){
@@ -340,7 +340,7 @@ function report_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $
 {
     $padress_book = new paloAdressBook($pDB);
     $pACL         = new paloACL($pDB_2);
-    $user	  = $_SESSION["elastix_user"];
+    $user	  = $_SESSION["issabel_user"];
     $id_user      = $pACL->getIdUser($user);
     $extension	  = $pACL->getUserExtension($user);
     if(is_null($extension) || $extension==""){
@@ -667,8 +667,8 @@ function save_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
     $arrForm   = createFieldForm($directory);
     $oForm     = new paloForm($smarty, $arrForm);
     $pACL      = new paloACL($pDB_2);
-    $id_user   = $pACL->getIdUser($_SESSION["elastix_user"]);
-    $isAdminGroup = $pACL->isUserAdministratorGroup($_SESSION["elastix_user"]);
+    $id_user   = $pACL->getIdUser($_SESSION["issabel_user"]);
+    $isAdminGroup = $pACL->isUserAdministratorGroup($_SESSION["issabel_user"]);
 
     if (isset($_GET['id']) && !ctype_digit($_GET['id'])) unset($_GET['id']);
     if (isset($_POST['id']) && !ctype_digit($_POST['id'])) unset($_POST['id']);
@@ -909,7 +909,7 @@ function deleteContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2
     $padress_book = new paloAdressBook($pDB);
     $ruta_destino = "/var/www/address_book_images/";
     $pACL         = new paloACL($pDB_2);
-    $id_user      = $pACL->getIdUser($_SESSION["elastix_user"]);
+    $id_user      = $pACL->getIdUser($_SESSION["issabel_user"]);
     $result       = "";
 
     foreach($_POST as $key => $values){
@@ -941,8 +941,8 @@ function view_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
     $directory = getParameter("type");
     $arrFormadress_book = createFieldForm($directory);
     $pACL    = new paloACL($pDB_2);
-    $id_user = $pACL->getIdUser($_SESSION["elastix_user"]);
-    $isAdminGroup = $pACL->isUserAdministratorGroup($_SESSION["elastix_user"]);
+    $id_user = $pACL->getIdUser($_SESSION["issabel_user"]);
+    $isAdminGroup = $pACL->isUserAdministratorGroup($_SESSION["issabel_user"]);
 
     $padress_book = new paloAdressBook($pDB);
     $oForm = new paloForm($smarty,$arrFormadress_book);
@@ -1053,7 +1053,7 @@ function call2phone($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2, $
     $jsonObject = new PaloSantoJSON();
     $padress_book = new paloAdressBook($pDB);
     $pACL         = new paloACL($pDB_2);
-    $id_user      = $pACL->getIdUser($_SESSION["elastix_user"]);
+    $id_user      = $pACL->getIdUser($_SESSION["issabel_user"]);
     $idContact=getParameter('idContact');
     $typeContact=getParameter('typeContact');
 
@@ -1115,7 +1115,7 @@ function transferCALL($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2,
     $jsonObject = new PaloSantoJSON();
     $padress_book = new paloAdressBook($pDB);
     $pACL         = new paloACL($pDB_2);
-    $id_user      = $pACL->getIdUser($_SESSION["elastix_user"]);
+    $id_user      = $pACL->getIdUser($_SESSION["issabel_user"]);
     $idContact=getParameter('idContact');
     $typeContact=getParameter('typeContact');
 
@@ -1222,7 +1222,7 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
     $directory  = getParameter("type");
 
     $pACL       = new paloACL($pDB_2);
-    $id_user    = $pACL->getIdUser($_SESSION["elastix_user"]);
+    $id_user    = $pACL->getIdUser($_SESSION["issabel_user"]);
 
     $ruta_destino = "/var/www/address_book_images";
     $imgDefault = $_SERVER['DOCUMENT_ROOT']."/modules/$module_name/images/Icon-user.png";
@@ -1267,7 +1267,7 @@ function backup_contacts($pDB, $pDB_2)
     $pAdressBook = new paloAdressBook($pDB);
     $fields = "name, last_name, telefono, cell_phone, home_phone, fax1, fax2, email, province, city, address, company, company_contact, contact_rol, notes";
     $pACL         = new paloACL($pDB_2);
-    $id_user      = $pACL->getIdUser($_SESSION["elastix_user"]);
+    $id_user      = $pACL->getIdUser($_SESSION["issabel_user"]);
     $arrResult = $pAdressBook->getAddressBookByCsv(null, null, $fields, null, null, $id_user);
 
     if(!$arrResult)

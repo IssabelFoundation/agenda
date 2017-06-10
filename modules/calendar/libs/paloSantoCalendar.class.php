@@ -661,7 +661,7 @@ CONTENIDO_ARCHIVO_AUDIO;
     {
         global $arrConf;
 
-        $pDB_acl = new paloDB($arrConf['elastix_dsn']['acl']);
+        $pDB_acl = new paloDB($arrConf['issabel_dsn']['acl']);
         $pACL = new paloACL($pDB_acl);
         $tuplaUser = $pACL->getUsers($this->_userid);
         if (count($tuplaUser) < 1)

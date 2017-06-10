@@ -57,14 +57,14 @@ function previewTTS($call_to, $tts)
     return NULL;
 }
 
-function searchCalendarContacts($search, $elastixuser)
+function searchCalendarContacts($search, $issabeluser)
 {
     global $arrConf;
     $response = array();
 
     // Obtener ID de ACL del usuario, dado el nombre de usuario
-    $pACL = new paloACL(new paloDB($arrConf['elastix_dsn']['acl']));
-    $id_user = $pACL->getIdUser($elastixuser);
+    $pACL = new paloACL(new paloDB($arrConf['issabel_dsn']['acl']));
+    $id_user = $pACL->getIdUser($issabeluser);
 
     // Buscar coincidencias de la búsqueda
     $pDBAddress = new paloDB($arrConf['dsn_conn_database3']);
