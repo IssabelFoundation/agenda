@@ -268,7 +268,7 @@ class core_AddressBook
     }
 
     /**
-     * Functional point that consults the address book of the authenticated user. The address book has an intern part that is the list * of available extensions, and an extern part that resides in a SQLITE database managed by Elastix
+     * Functional point that consults the address book of the authenticated user. The address book has an intern part that is the list * of available extensions, and an extern part that resides in a SQLITE database managed by Issabel
      *
      * @param   string    $addressBookType    Can be 'internal' or 'external'
      * @param   integer   $offset             (Optional) start of records or 0 if omitted

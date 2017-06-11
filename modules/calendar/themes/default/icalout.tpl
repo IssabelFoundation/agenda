@@ -1,5 +1,5 @@
 BEGIN:VCALENDAR
-PRODID:-//Elastix Development Department// Elastix 2.0 //EN
+PRODID:-//Issabel Development Department// Issabel 4.0 //EN
 VERSION:2.0
 {foreach from=$eventlist key=idx item=event}
 BEGIN:VEVENT

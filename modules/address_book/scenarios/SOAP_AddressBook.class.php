@@ -56,7 +56,7 @@ class SOAP_AddressBook extends core_AddressBook
 
     /**
      * Function that implements the SOAP call to see the address book of User Logon SOAP service. The address book has an internal part
-     * that is a list of available extensions, and an external part that resides in SQLITE database managed by Elastix. If an
+     * that is a list of available extensions, and an external part that resides in SQLITE database managed by Issabel. If an
      * error exists a SOAP fault is thrown
      *
      * @param mixed    $request:

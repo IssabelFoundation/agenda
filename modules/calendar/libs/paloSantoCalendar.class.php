@@ -125,7 +125,7 @@ class paloSantoCalendar
      * indicado como cadenas yyyy-mm-dd hh:mm:ss. Este método también devolverá
      * registros para los eventos que se encuentren parcialmente fuera del
      * intervalo. Este comportamiento es adecuado para la implementación del
-     * visor de calendario del GUI de Elastix.
+     * visor de calendario del GUI de Issabel.
      *
      * @param    string    $sFechaInicial    Fecha inicial del intervalo
      * @param    string    $sFechaFinal    Fecha final del intervalo (opcional)
