@@ -89,7 +89,7 @@ $(document).ready(function() {
                     text: arrLang_main['LBL_SAVE'],
                     click: function() {
                         var self = this;
-                        var d = saveEventDialog('/rest.php/' + getCurrentElastixModule() + '/CalendarEvent');
+                        var d = saveEventDialog('/rest.php/' + getCurrentIssabelModule() + '/CalendarEvent');
                         if (d != null) {
                             d.done(function() {
                                 $(self).dialog('close');
@@ -118,7 +118,7 @@ $(document).ready(function() {
         theme: true,    // Usar tema actual de jQueryUI
         editable: true, // Habilitar modificación de eventos (drag/resize)
         timeFormat: 'H:mm{ - H:mm}',
-        events: '/rest.php/' + getCurrentElastixModule() + '/CalendarEvent?format=fullcalendar',
+        events: '/rest.php/' + getCurrentIssabelModule() + '/CalendarEvent?format=fullcalendar',
         header: {
             left:   'prev,next today create',
             center: 'title',
@@ -226,7 +226,7 @@ $(document).ready(function() {
         }
 
         $.post('index.php', {
-            menu:       getCurrentElastixModule(),
+            menu:       getCurrentIssabelModule(),
             action:     'previewtts',
             call_to:    call_to,
             tts:        tts,
@@ -260,7 +260,7 @@ $(document).ready(function() {
 
             // Se espera que la respuesta sea un arreglo de {label, value}
             $.get('index.php', {
-                menu:       getCurrentElastixModule(),
+                menu:       getCurrentIssabelModule(),
                 action:     'searchcontacts',
                 rawmode:    'yes',
                 search:     search
@@ -294,7 +294,7 @@ $(document).ready(function() {
         var winiz = (screen.width-ancho)/2;
         var winal = (screen.height-alto)/2;
         my_window = window.open(
-                '?menu=' + getCurrentElastixModule() + '&action=phone_numbers&rawmode=yes',
+                '?menu=' + getCurrentIssabelModule() + '&action=phone_numbers&rawmode=yes',
                 "my_window",
                 "width="+ancho+",height="+alto+",top="+winal+",left="+winiz+
                     ",location=yes,status=yes,resizable=yes,scrollbars=yes,fullscreen=no,toolbar=yes");
@@ -310,7 +310,7 @@ $(document).ready(function() {
 
     if ($('input[name="event_id"]').length > 0) {
         var event_id = $('input[name="event_id"]').val();
-        if (event_id != undefined && event_id != '') openEventDialog('/rest.php/' + getCurrentElastixModule() + '/CalendarEvent/' + event_id);
+        if (event_id != undefined && event_id != '') openEventDialog('/rest.php/' + getCurrentIssabelModule() + '/CalendarEvent/' + event_id);
     }
 });
 
@@ -430,7 +430,7 @@ function fillEventDialog(eventdata)
         $('.notif').show();
         $('#grilla').show();
 
-        var module_name = getCurrentElastixModule();
+        var module_name = getCurrentIssabelModule();
         var grilla_tbody = $('#grilla tbody');
         var email_regexp = /^"?(.*?)"?\s*<?(\S+@\S+?)>?$/;
         for (var i = 0; i < eventdata.emails_notification.length; i++) {
