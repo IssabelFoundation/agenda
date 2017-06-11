@@ -223,7 +223,7 @@ function handleJSON_unimplemented($smarty, $module_name, $local_templates_dir)
 function handleJSON_display($smarty, $module_name, $local_templates_dir)
 {
     /* Esta función sólo llega a invocarse desde el applet Calendar del
-     * Dashboard en el módulo elastix-system. Al invocarse, se asigna
+     * Dashboard en el módulo issabel-system. Al invocarse, se asigna
      * $_GET['id'] al id de evento que se desea que se muestre. */
     $smarty->assign('EVENT_ID', (isset($_GET['id']) && ctype_digit($_GET['id']))
         ? trim($_GET['id']) : '');
