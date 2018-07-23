@@ -3,13 +3,12 @@
 Summary: Issabel Agenda Module
 Name:    issabel-%{modname}
 Version: 4.0.0
-Release: 1
+Release: 2
 License: GPL
 Group:   Applications/System
 Source0: %{modname}_%{version}-%{release}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
-Requires(pre): asterisk
 Requires(pre): issabelPBX >= 2.8.1-1
 Requires(pre): issabel-framework >= 2.4.0-14
 Requires: php-PHPMailer
