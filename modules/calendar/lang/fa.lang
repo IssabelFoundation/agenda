@@ -3,9 +3,9 @@
   Codificación: UTF-8
   +----------------------------------------------------------------------+
   | Issabel version 4.0                                                  |
-
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2019 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -19,11 +19,11 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
-  |                                                                      |
   | Translate by: Haamed Kouhfallah                                      |
-  | Email: haamed@cytco.net                                              |                                                                    |
+  | Email: k.haamed@gmail.com                                            |                                                                
   +----------------------------------------------------------------------+
-   $Id: fa.lang,v 1.2 2008/04/21 10:11:44 bmacias@palosanto.com Exp $ */
+  $Id: fa.lang,v 1.1 2013-08-12 04:08:50 Jose Briones nicolas@issabel.com Exp $
+*/
 global $arrLangModule;
 $arrLangModule=array(
 "Calendar" => "تقويم",
@@ -117,52 +117,49 @@ $arrLangModule=array(
 "Email" => "ايميل",
 "Contact" => "تماس",
 "Export_Calendar" => "تقويم صادره",
-"error_recording" => "Please add text to speech",
+"error_recording" => "لطفا متن خود را وارد نماييد",
 "Can not create called file" => "فايل تماس هاي گرفته شده نمي تواند ايجاد شود",
 "Organizer" => "سازمان دهنده",
 "Confirm_event" => "تائيد رويداد",
 "Confirm" => "تائيد",
 "footer" => "کليه حقوق براي شرکت سيتکو محفوظ است",
-"share_calendar" => "Share Calendar",
-"other_calendar" => "Others Calendars",
+"share_calendar" => "به اشتراك گذاري تقويم",
+"other_calendar" => "تقويم‌هاي ديگر",
 "ical" => "(Format iCal)",
-"enter_emails" => "Enter the Emails",
-"Send" => "Send",
+"enter_emails" => "ايميل‌ها را وارد كنيد",
+"Send" => "ارسال",
 "error_email" => "Please some emails are incorrect",
-"Sharing_Calendar" => "Sharing Calendar",
-"User" => "Usuario",
-"Password" => "Contraseña",
+"Sharing_Calendar" => "به اشتراك گذاري تقويم",
+"User" => "كد كاربري",
+"Password" => "رمز عبور",
 "Description_share" => "wants to share his activity calendar with you. Please confirm if you wish accept it.",
-"Accept" => "Accept",
-"message_send" => "The notification has been sent",
-"accept_calendar" => "Accept Calendar",
-"Event" => "Event",
-"View_Event" => "View Event",
-"logout" => "Logout",
-"login" => "Login",
-"active_foneCall" => "Enable Reminder",
-"Name" => "Name",
-"Download" => "Download",
-"Here" => "Here",
+"Accept" => "قبول",
+"message_send" => "آگاه سازي ارسال شد",
+"accept_calendar" => "قبول تقويم",
+"Event" => "رخداد",
+"View_Event" => "ديدن رخداد",
+"logout" => "خروج",
+"login" => "ورود",
+"active_foneCall" => "فعال كردن يادآوري",
+"Name" => "نام",
+"Download" => "دريافت",
+"Here" => "اينجا",
 "May" => "May",
-"ReminderTime" => "Reminder",
-"lblbefore" => "min before",
-"Loading" => "Loading",
+"ReminderTime" => "يادآوري",
+"lblbefore" => "دقيقه قبل",
+"Loading" => "بارگزاري",
 "error_Noevent" => "Event does not exits or event is not allowed to your user",
-"START_TYPE" => "Start to type",
+"START_TYPE" => "شروع به نوشتن",
 "notification_event" => "Event Notification",
 "invitation_event" => "You have been invited to participate in this event",
 "noResponseNotification" => "This is a notice and should not answered",
-"Color" => "Color",
-"Dear User" => "Dear User",
-"Create New Event" => "Create New Event",
-"Text to Speech" => "Text to Speech",
-"Search in Address Book" => "Search in Address Book",
-"Listen" => "Listen",
-"Festival is not up" => "The Festival (text-to-speech) service is not running. To activate it please go to <a href='?menu=festival'>PBX->Tools->Festival</a>",
-"Click here to listen" => "Click here to listen",
-"Deleting" => "Deleting",
-"Sending Request" => "Sending Request",
-"Download ical calendar" => "Download ical calendar",
+"copyrightNotification" => "Elastix is licensed under GPL by PaloSanto Solutions",
+"Color" => "رنگ",
+"Dear User" => "كاربر محترم",
+"Create New Event" => "ايجاد يك رخداد",
+"Text to Speech" => "تبديل متن به گفتار",
+"Search in Address Book" => "جستجو در دفترچه تلفن",
+"Listen" => "شنيدن",
+"Festival is not up" => "فستيوال فعال نيست",
 );
 ?>

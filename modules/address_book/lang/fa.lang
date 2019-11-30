@@ -5,6 +5,7 @@
   | Issabel version 4.0                                                  |
   | http://www.issabel.org                                               |
   +----------------------------------------------------------------------+
+  | Copyright (c) 2019 Issabel Foundation                                |
   | Copyright (c) 2006 Palosanto Solutions S. A.                         |
   +----------------------------------------------------------------------+
   | The contents of this file are subject to the General Public License  |
@@ -18,16 +19,16 @@
   | limitations under the License.                                       |
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
-  |                                                                      |
   | Translate by: Haamed Kouhfallah                                      |
-  | Email: haamed@cytco.net                                              |                                                                    |
+  | Email: k.haamed@gmail.com                                            |
   +----------------------------------------------------------------------+
-   $Id: fa.lang,v 1.2 2008/04/21 10:11:44 bmacias@palosanto.com Exp $ */
+  $Id: fa.lang,v 1.1 2019-11-30 04:08:50 Haamed Kouhfallah k.haamed@gmail.com Exp $
+*/
 global $arrLangModule;
 $arrLangModule=array(
 "New Contact" => "مخاطب جدید",
 "Address Book" => "دفتر تلفن",
-"Are you sure you wish to delete the contact." => " آيا مطمئنيد که مي خواهيد مخاطب را حذف کنيد؟",
+"Are you sure you wish to delete the contact." => "آیا نسبت به حذف این مخاطب اطمینان دارید",
 "First Name" => "نام",
 "Last Name" => " نام خانوادگی",
 "Phone Number" => " شماره تلفن",
@@ -41,7 +42,7 @@ $arrLangModule=array(
 "Download Address Book" => "بارگزاری دفترچه تلفن",
 "Can't exist a Name empty. Line" => "نام نمی تواند خالی باشد. خط",
 "Can't exist a Last Name empty. Line" => "نام خانوادگی نمی تواند خالی باشد. خط",
-"Can't exist a Phone Number/Job Phone Number empty. Line" => "شماره تلفن نمی تواند خالی باشد. خط",
+"Can't exist a Phone Number empty. Line" => "شماره تلفن نمی تواند خالی باشد. خط",
 "Total contacts created" => "تعداد مخاطبین ایجاد شده",
 "Contact Data already exists" => "اطلاعات این مخاطب در سیستم وجود دارد",
 "Header File Address Book" => "سر صفحه فایل باید در سطر اول ل بوده و حداقلا دارای 3 ستون باشد. نام، نام خانوادگی و شماره تماس",
@@ -60,27 +61,42 @@ $arrLangModule=array(
 "At minimum there must be the columns" => "باید حداقل چند ستون وجود داشته باشد",
 "Incomplete Columns" => "ستون ها ناقص",
 "The file is incorrect or empty" => "فایل اشتباه یا خالی است",
-"You don't have extension number associated with user" => "There is no extension number associated with the current user. You can associate an extension number to your user by clicking <a href=\"javascript: openWindow('index.php?menu=userlist&amp;action=edit_userExtension&amp;rawmode=yes');\">here</a>",
+"You don't have extension number associated with user" => "شما شماره داخلی وابسته به کاربر ندارید",
 "ERROR" => "خطا",
-"Transfer" => "Transfer",
-"The transfer couldn't be realized, maybe you don't have any conversation now." => "The transfer couldn't be realized, maybe you don't have any conversation now.",
-"Not_allowed_change" => "This changes disallowed for your user. This contact it not associated to your address book",
-"picture" => "Picture",
-"Address" => "Address",
-"Company" => "Company",
-"Notes" => "Notes",
-"Status" => "Status",
-"Private Contact" => "Private Contact",
-"Public Contact" => "Public Contact",
-"Invalid file extension.- It must be png or jpg or jpeg" => "Invalid file extension.- It must be png, jpg or jpeg without content special characters",
-"Validation Error" => "Validation Error",
-"Error to Upload" => "Error to Upload file",
-"Type Contact" => "Type Contact",
-"Internal Error" => "Please be sure if the parameters are corrects",
-"Not_allowed_contact" => "This contact don't exist in your Address Book",
-"Public editable" => "Public editable",
-"Public not editable" => "Public not editable",
-"Private" => "Private",
-"contact_admin" => "There is no extension number associated with the current user. Please contact the administrator to assign it an extension"
+"Transfer" => "انتقال مکالمه",
+"The transfer couldn't be realized, maybe you don't have any conversation now." => "امكان انتقال نيست، شايد شما در حال حاضر مكالمه‌اي نداريد",
+"Not_allowed_change" => "اين اطلاعات را نمي‌توانيد ويرايش كنيد، چون در دفترچه تلفن شما نيست",
+"picture" => "تصوير",
+"Address" => "آدرس",
+"Company" => "شركت",
+"Notes" => "نكات",
+"Status" => "وضعيت",
+"Private Contact" => "اطلاعات تماس خصوصي",
+"Public Contact" => "اطلاعات تماس عمومي",
+"Invalid file extension.- It must be png or jpg or jpeg" => "فايل يا فرمت اشتباه، تصوير شما مي‌بايست png, jpg و يا jpeg باشد",
+"Validation Error" => "خطاي اعتبار سنجي",
+"Error to Upload" => "خطاي بارگزاري فايل",
+"Type Contact" => "ورود اطلاعات",
+"Internal Error" => "لطفا مطمئن شويد پارامتر‌ها درست هستند",
+"Not_allowed_contact" => "اين اطلاعات تماس در دفترچه تلفن شما وجود ندارد",
+"Public editable" => "قابليت ويرايش توسط عموم",
+"Public not editable" => "غير‌قابل ويرايش براي عموم",
+"Private" => "خصوصي",
+"Work's Phone Number" => "تلفن محل کار",
+"Cell Phone Number (SMS)" => "شماره موبایل",
+"Home Phone Number" => "تلفن منزل",
+"FAX Number 1" => "شماره فکس 1",
+"FAX Number 2" => "شماره فکس 2",
+"Province" => "استان",
+"Contact person in your Company" => "فرد مرتبط در شرکت شما",
+"Contact person's current position" => "سمت فرد مرتبط",
+"City" => "شهر",
+"Work's Phone Number" => "تلفن محل کار",
+"Work's Phone Number" => "تلفن محل کار",
+"Filter applied" => "فیلتر اعمال شده",
+
+
+
+
 );
 ?>
