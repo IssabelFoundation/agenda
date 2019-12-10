@@ -581,6 +581,32 @@ SQL_UPDATE_EVENT;
      */
     private function _crearArchivoLlamadaEvento($idx, $sCallerID, $iRetries, $iCallTimestamp)
     {
+
+        $lang = get_language();
+
+        $picolang=array();
+        $picolang['en']='en-EN';
+        $picolang['es']='es-ES';
+        $picolang['fr']='fr-FR';
+        $picolang['it']='it-IT';
+        $picolang['de']='de-DE';
+
+        $plang = isset($picolang[$lang])?$picolang[$lang]:'en-EN';
+
+        if(file_exists("/var/lib/asterisk/agi-bin/picotts.agi")) {
+        $sContenido = <<<CONTENIDO_ARCHIVO_AUDIO
+Channel: Local/{$this->_reminder_callnum}@from-internal
+CallerID: $sCallerID
+MaxRetries: $iRetries
+RetryTime: 60
+WaitTime: 30
+Application: AGI
+Data: picotts.agi,"{$this->_reminder_tts}",$plang
+CONTENIDO_ARCHIVO_AUDIO;
+
+ 
+        } else {
+      
         $sContenido = <<<CONTENIDO_ARCHIVO_AUDIO
 Channel: Local/{$this->_reminder_callnum}@from-internal
 CallerID: $sCallerID
@@ -591,6 +617,9 @@ Application: Festival
 Data: {$this->_reminder_tts}
 Set: TTS={$this->_reminder_tts}
 CONTENIDO_ARCHIVO_AUDIO;
+
+        }
+
         $sNombreTemp = tempnam('/tmp', 'callfile_');
         $r = file_put_contents($sNombreTemp, $sContenido);
         if ($r === FALSE) {
