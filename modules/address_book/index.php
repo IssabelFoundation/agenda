@@ -531,6 +531,39 @@ function report_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $
     return $contenidoModulo;
 }
 
+function delASTDBcidname($dsn_agi_manager,$data) {
+    $astman = new AGI_AsteriskManager();
+    if (!$astman->connect($dsn_agi_manager['host'], $dsn_agi_manager['user'] , $dsn_agi_manager['password'])) {
+         echo _tr("Error when connecting to Asterisk Manager");
+    } else{
+        $astman->database_del("cidname",$data['telefono']);
+
+        $astman->disconnect();
+        if (strtoupper($salida["Response"]) != "ERROR") {
+            return explode("\n", $salida["Response"]);
+        }else return false;
+    }
+}
+
+
+
+function setASTDBcidname($dsn_agi_manager,$data) {
+    $astman = new AGI_AsteriskManager();
+    if (!$astman->connect($dsn_agi_manager['host'], $dsn_agi_manager['user'] , $dsn_agi_manager['password'])) {
+         echo _tr("Error when connecting to Asterisk Manager");
+    } else{
+        $astman->database_del("cidname",$data['telefono']);
+        $astman->database_put("cidname",$data['telefono'],"\"".$data['name']." ".$data['last_name']."\"");
+
+        $astman->disconnect();
+        if (strtoupper($salida["Response"]) != "ERROR") {
+            return explode("\n", $salida["Response"]);
+        }else return false;
+    }
+ 
+}
+
+
 function createFieldForm($directory)
 {
     $arrFields = array(
@@ -859,6 +892,8 @@ function save_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
                     $smarty->assign("mb_title", _tr("Validation Error"));
                     $smarty->assign("mb_message", _tr("Internal Error"));
                     return report_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2, $arrConf, $dsn_agi_manager, $dsnAsterisk);
+                } else {
+                    setASTDBcidname($dsn_agi_manager,array('name'=>$namedb,'last_name'=>$last_namedb,'telefono'=>$telefonodb));
                 }
             }else{
                 $smarty->assign("mb_title", _tr("Validation Error"));
@@ -872,6 +907,8 @@ function save_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
                 $smarty->assign("mb_message", _tr("Internal Error"));
                 return new_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2, $arrConf, $dsn_agi_manager, $dsnAsterisk);
             }
+
+             setASTDBcidname($dsn_agi_manager,array('name'=>$namedb,'last_name'=>$last_namedb,'telefono'=>$telefonodb));
 
             $lastId = $pDB->getLastInsertId();
             $idtmp  = ($directory=="external")?$lastId:$idPost;
@@ -913,6 +950,7 @@ function deleteContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2
             if($padress_book->isEditablePublicContact($tmpBookID, $id_user, "external", false, null)){
                 $contactTmp = $padress_book->contactData($tmpBookID, $id_user,"external", false, null);
                 $result = $padress_book->deleteContact($tmpBookID, $id_user);
+                delASTDBcidname($dsn_agi_manager,$contactTmp);
                 if($contactTmp['picture']!="" && isset($contactTmp['picture'])){
                     if(is_file($ruta_destino."/".$contactTmp['picture']))
                         unlink($ruta_destino."/".$contactTmp['picture']);
