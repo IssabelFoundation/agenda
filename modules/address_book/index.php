@@ -19,9 +19,9 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php,v 1.1 2008/01/30 15:55:57 bmacias Exp $
-  $Id: index.php,v 1.1 2008/06/25 16:51:50 afigueroa Exp $
-  $Id: index.php,v 1.1 2010/02/04 09:20:00 onavarrete@palosanto.com Exp $
+  $Id: index.php, Mon 29 Mar 2021 09:51:22 AM EDT, nicolas@issabel.com
+  $Id: index.php, Mon 29 Mar 2021 09:51:22 AM EDT, nicolas@issabel.com
+  $Id: index.php, Mon 29 Mar 2021 09:51:22 AM EDT, nicolas@issabel.com
  */
 
 function _moduleContent(&$smarty, $module_name)
@@ -177,12 +177,13 @@ function load_address_book_from_csv($smarty, $ruta_archivo, $pDB, $pDB_2)
                 $company_codb = isset($arrayColumnas[12])?$tupla[$arrayColumnas[12]]:"";
                 $contact_pdb  = isset($arrayColumnas[13])?$tupla[$arrayColumnas[13]]:"";
                 $notesdb      = isset($arrayColumnas[14])?$tupla[$arrayColumnas[14]]:"";
-                $statusdb     = "isPrivate";
+                $statusdb     = isset($arrayColumnas[15])?$tupla[$arrayColumnas[15]]:"isPrivate";
                 $directory    = "external";
                 $iduserdb     = $id_user;
 
                 $data = array($namedb, $last_namedb, $telefonodb, $cellphonedb, $homephonedb, $fax1db, $fax2db, $emaildb,
-                  $provincedb, $citydb, $iduserdb, $addressdb, $companydb, $company_codb, $contact_pdb, $notesdb, $statusdb, $directory);
+                    $provincedb, $citydb, $iduserdb, $addressdb, $companydb, $company_codb, $contact_pdb, $notesdb, $statusdb, $directory);
+
                 //Paso 1: verificar que no exista un usuario con los mismos datos
                 $result = $pAdressBook->existContact($namedb, $last_namedb, $telefonodb);
                 if(!$result)
@@ -194,6 +195,7 @@ function load_address_book_from_csv($smarty, $ruta_archivo, $pDB, $pDB_2)
                     if(!$pAdressBook->addContactCsv($data))
                         $Messages .= _tr("ERROR") . $pDB->errMsg . "<br />";
 
+                    setASTDBcidname($dsn_agi_manager,array('name'=>$namedb,'last_name'=>$last_namedb,'telefono'=>$telefonodb));
                     $cont++;
                 }
             }
@@ -248,6 +250,8 @@ function isValidCSV($sFilePath, &$arrayColumnas){
                     $arrayColumnas[13] = $i;
                 else if($tupla[$i] == 'Notes')
                     $arrayColumnas[14] = $i;
+                else if($tupla[$i] == 'Status')
+                    $arrayColumnas[15] = $i;
             }
             if(isset($arrayColumnas[0]) && isset($arrayColumnas[1]) && isset($arrayColumnas[2]))
             {
@@ -1297,7 +1301,7 @@ function backup_contacts($pDB, $pDB_2)
     $Messages = "";
     $csv = "";
     $pAdressBook = new paloAdressBook($pDB);
-    $fields = "name, last_name, telefono, cell_phone, home_phone, fax1, fax2, email, province, city, address, company, company_contact, contact_rol, notes";
+    $fields = "name, last_name, telefono, cell_phone, home_phone, fax1, fax2, email, province, city, address, company, company_contact, contact_rol, notes, status";
     $pACL         = new paloACL($pDB_2);
     $id_user      = $pACL->getIdUser($_SESSION["issabel_user"]);
     $arrResult = $pAdressBook->getAddressBookByCsv(null, null, $fields, null, null, $id_user);
@@ -1310,7 +1314,7 @@ function backup_contacts($pDB, $pDB_2)
         //cabecera
         $csv .= "\"Name\",\"Last Name\",\"Work's Phone Number\",\"Cell Phone Number (SMS)\",\"Home Phone Number\",";
         $csv .= "\"FAX Number 1\",\"FAX Number 2\",\"Email\",\"Province\",\"City\",\"Address\",\"Company\",";
-        $csv .= "\"Contact person in your Company\",\"Contact person's current position\",\"Notes\"\n";
+        $csv .= "\"Contact person in your Company\",\"Contact person's current position\",\"Notes\",\"Status\"\n";
         foreach($arrResult as $key => $contact)
         {
             $csv .= "\"{$contact['name']}\",\"{$contact['last_name']}\",".
@@ -1320,7 +1324,8 @@ function backup_contacts($pDB, $pDB_2)
                     "\"{$contact['province']}\",\"{$contact['city']}\",".
                     "\"{$contact['address']}\",\"{$contact['company']}\",".
                     "\"{$contact['company_contact']}\",\"{$contact['contact_rol']}\",".
-                    "\"{$contact['notes']}\"".
+                    "\"{$contact['notes']}\",".
+                    "\"{$contact['status']}\"".
                     "\n";
         }
     }
