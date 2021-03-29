@@ -181,6 +181,12 @@ function load_address_book_from_csv($smarty, $ruta_archivo, $pDB, $pDB_2)
                 $directory    = "external";
                 $iduserdb     = $id_user;
 
+                // non admin users can only upload private records
+                $isAdminGroup = $pACL->isUserAdministratorGroup($_SESSION["issabel_user"]);
+                if(!$isAdminGroup) {
+                    $statusdb = "isPrivate";
+                }
+
                 $data = array($namedb, $last_namedb, $telefonodb, $cellphonedb, $homephonedb, $fax1db, $fax2db, $emaildb,
                     $provincedb, $citydb, $iduserdb, $addressdb, $companydb, $company_codb, $contact_pdb, $notesdb, $statusdb, $directory);
 
