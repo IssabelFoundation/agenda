@@ -466,8 +466,8 @@ function report_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $
             if(file_exists($picture))
                 $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img alt='image' border='0' src='index.php?menu=$module_name&type=".$directory_type."&action=getImage&idPhoto=$adress_book[id]&thumbnail=yes&rawmode=yes'/></a>";
             else{
-                $defaultPicture = "modules/$module_name/images/Icon-user_Thumbnail.png";
-                $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img border='0' alt='image' src='$defaultPicture'/></a>";
+                $defaultPicture = "/index.php?menu=address_book&type=${directory_type}&action=getImage&idPhoto=${adress_book['id']}&thumbnail=yes&rawmode=yes";
+                $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img width='48' border='0' alt='image' src='$defaultPicture'/></a>";
             }
 
             $arrTmp[0]  = ($directory_type=='external')?"<input type='checkbox' name='contact_{$adress_book['id']}'  />":'';
@@ -1295,9 +1295,23 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
             ImageDestroy($im); // Liberamos la memoria que ocupaba la imagen
         }
     }else{
-        Header("Content-type: image/png");
-        $image = file_get_contents($imgDefault);
-        echo $image;
+
+        if($contactData['email']<>'') {
+            $gravatar_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $contactData['email'] ) ) ) . "?d=" . urlencode( $imgDefault ) . "&s=200";
+            $image = file_get_contents($gravatar_url);
+            if(!$image) {
+                Header("Content-type: image/png");
+                $imageDef = file_get_contents($imgDefault);
+                echo $imageDef;
+            } else {
+                Header("Content-type: image/png");
+                echo $image;
+            }
+        } else {
+            Header("Content-type: image/png");
+            $imageDef = file_get_contents($imgDefault);
+            echo $imageDef;
+        }
     }
     return;
 }
