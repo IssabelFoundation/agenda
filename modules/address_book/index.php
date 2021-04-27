@@ -19,9 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Mon 29 Mar 2021 09:51:22 AM EDT, nicolas@issabel.com
-  $Id: index.php, Mon 29 Mar 2021 09:51:22 AM EDT, nicolas@issabel.com
-  $Id: index.php, Mon 29 Mar 2021 09:51:22 AM EDT, nicolas@issabel.com
+  $Id: index.php, Tue 27 Apr 2021 09:47:22 AM EDT, nicolas@issabel.com
  */
 
 function _moduleContent(&$smarty, $module_name)
@@ -1281,6 +1279,8 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
         $image = $ruta_destino."/".$pic;
     // Creamos la imagen a partir de un fichero existente
 
+    header("Cache-Control: max-age=1800");
+    header("Vary: Accept-Encoding");
 
     if(is_file($image)){
         if(strtolower($typeImage) == "png"){
