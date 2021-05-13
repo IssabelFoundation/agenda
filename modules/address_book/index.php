@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Tue 27 Apr 2021 09:47:22 AM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 13 May 2021 04:41:14 PM EDT, nicolas@issabel.com
  */
 
 function _moduleContent(&$smarty, $module_name)
@@ -1297,7 +1297,7 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
     }else{
 
         if($contactData['email']<>'') {
-            $gravatar_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $contactData['email'] ) ) ) . "?d=" . urlencode( $imgDefault ) . "&s=200";
+            $gravatar_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $contactData['email'] ) ) ) . "?d=404&s=200";
             $image = file_get_contents($gravatar_url);
             if(!$image) {
                 Header("Content-type: image/png");
