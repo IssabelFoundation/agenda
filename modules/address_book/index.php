@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Thu 13 May 2021 04:41:14 PM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 13 May 2021 04:43:55 PM EDT, nicolas@issabel.com
  */
 
 function _moduleContent(&$smarty, $module_name)
@@ -1284,12 +1284,12 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
 
     if(is_file($image)){
         if(strtolower($typeImage) == "png"){
-            Header("Content-type: image/png");
+            header("Content-type: image/png");
             $im = imagecreatefromPng($image);
             ImagePng($im); // Mostramos la imagen
             ImageDestroy($im); // Liberamos la memoria que ocupaba la imagen
         }else{
-            Header("Content-type: image/jpeg");
+            header("Content-type: image/jpeg");
             $im = imagecreatefromJpeg($image);
             ImageJpeg($im); // Mostramos la imagen
             ImageDestroy($im); // Liberamos la memoria que ocupaba la imagen
@@ -1300,15 +1300,21 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
             $gravatar_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $contactData['email'] ) ) ) . "?d=404&s=200";
             $image = file_get_contents($gravatar_url);
             if(!$image) {
-                Header("Content-type: image/png");
+                header("Content-type: image/png");
+                header("Cache-Control: max-age=1800");
+                header("Vary: Accept-Encoding");
                 $imageDef = file_get_contents($imgDefault);
                 echo $imageDef;
             } else {
-                Header("Content-type: image/png");
+                header("Content-type: image/png");
+                header("Cache-Control: max-age=1800");
+                header("Vary: Accept-Encoding");
                 echo $image;
             }
         } else {
-            Header("Content-type: image/png");
+            header("Content-type: image/png");
+            header("Cache-Control: max-age=1800");
+            header("Vary: Accept-Encoding");
             $imageDef = file_get_contents($imgDefault);
             echo $imageDef;
         }
