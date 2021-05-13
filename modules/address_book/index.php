@@ -1298,8 +1298,8 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
 
         if($contactData['email']<>'') {
             $gravatar_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $contactData['email'] ) ) ) . "?d=404&s=200";
-            $image = file_get_contents($gravatar_url);
-            if(!$image) {
+            $image = curl_get_file($gravatar_url);
+            if($image=='') {
                 header("Content-type: image/png");
                 header("Cache-Control: max-age=1800");
                 header("Vary: Accept-Encoding");
@@ -1320,6 +1320,23 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
         }
     }
     return;
+}
+
+function curl_get_file($url) {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $file='';
+    if( ($file = curl_exec($ch) ) === false) {
+        return '';
+    } else {
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+        if($httpCode == 404) {
+            return '';
+        } else {
+            return $file;
+        }
+    }
 }
 
 function backup_contacts($pDB, $pDB_2)
