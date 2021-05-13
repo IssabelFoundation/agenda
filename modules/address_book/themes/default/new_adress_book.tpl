@@ -29,11 +29,12 @@
                     </td>
                 </tr>
                 <tr id="tr_new_contact">
-                    <td width="310px" align="center">
+                    <td width="310px" align="center" valign="top">
+<br/>
             {if $ShowImg}
-                        <img alt="image" src="index.php?menu={$MODULE_NAME}&action=getImage&type={$TYPE}&idPhoto={$idPhoto}&thumbnail=no&rawmode=yes"/>
+                        <img style='border-radius: 50%;' alt="image" src="index.php?menu={$MODULE_NAME}&action=getImage&type={$TYPE}&idPhoto={$idPhoto}&thumbnail=no&rawmode=yes"/>
             {else}
-                        <img alt="image" src="modules/{$MODULE_NAME}/images/Icon-user.png"/>
+                        <img style='border-radius: 50%;' alt="image" src="modules/{$MODULE_NAME}/images/Icon-user.png"/>
             {/if}
                     </td>
                     <td>

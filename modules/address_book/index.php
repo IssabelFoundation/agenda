@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Thu 13 May 2021 04:43:55 PM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 13 May 2021 05:57:16 PM EDT, nicolas@issabel.com
  */
 
 function _moduleContent(&$smarty, $module_name)
@@ -462,10 +462,10 @@ function report_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $
             $picture = "/var/www/address_book_images/{$idt}_Thumbnail.$exten";
 
             if(file_exists($picture))
-                $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img alt='image' border='0' src='index.php?menu=$module_name&type=".$directory_type."&action=getImage&idPhoto=$adress_book[id]&thumbnail=yes&rawmode=yes'/></a>";
+                $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img alt='image' style='border-radius: 50%;' border='0' src='index.php?menu=$module_name&type=".$directory_type."&action=getImage&idPhoto=$adress_book[id]&thumbnail=yes&rawmode=yes'/></a>";
             else{
                 $defaultPicture = "/index.php?menu=address_book&type=${directory_type}&action=getImage&idPhoto=${adress_book['id']}&thumbnail=yes&rawmode=yes";
-                $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img width='48' border='0' alt='image' src='$defaultPicture'/></a>";
+                $arrTmp[1] = "<a href='?menu=$module_name&action=show&type=".$directory_type."&id=".$adress_book['id']."'><img width='48' style='border-radius: 50%;' border='0' alt='image' src='$defaultPicture'/></a>";
             }
 
             $arrTmp[0]  = ($directory_type=='external')?"<input type='checkbox' name='contact_{$adress_book['id']}'  />":'';
@@ -545,11 +545,7 @@ function delASTDBcidname($dsn_agi_manager,$data) {
          echo _tr("Error when connecting to Asterisk Manager");
     } else{
         $astman->database_del("cidname",$data['telefono']);
-
         $astman->disconnect();
-        if (strtoupper($salida["Response"]) != "ERROR") {
-            return explode("\n", $salida["Response"]);
-        }else return false;
     }
 }
 
@@ -562,13 +558,8 @@ function setASTDBcidname($dsn_agi_manager,$data) {
     } else{
         $astman->database_del("cidname",$data['telefono']);
         $astman->database_put("cidname",$data['telefono'],"\"".$data['name']." ".$data['last_name']."\"");
-
         $astman->disconnect();
-        if (strtoupper($salida["Response"]) != "ERROR") {
-            return explode("\n", $salida["Response"]);
-        }else return false;
     }
- 
 }
 
 
