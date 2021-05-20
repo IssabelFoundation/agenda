@@ -20,7 +20,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: paloSantoAdressBook.class.php, Thu 20 May 2021 08:27:38 AM EDT, nicolas@issabel.com
+  $Id: paloSantoAdressBook.class.php, Thu 20 May 2021 06:54:46 PM EDT, nicolas@issabel.com
  */
 
 //ini_set("display_errors", true);
@@ -126,6 +126,7 @@ a array with the field "total" containing the total of records.
 
     function contactData($id, $id_user, $directory, $isAdminGroup, $dsn)
     {
+        if($id=='null') { return; }
         if($directory == "external"){
             $where = "id=? and (iduser=? or status='isPublic') and directory='external'";
             $params = array($id, $id_user);
