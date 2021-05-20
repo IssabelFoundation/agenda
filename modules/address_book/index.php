@@ -19,8 +19,8 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Thu 13 May 2021 05:57:16 PM EDT, nicolas@issabel.com
- */
+  $Id: index.php, Thu 20 May 2021 03:54:12 PM EDT, nicolas@issabel.com
+*/
 
 function _moduleContent(&$smarty, $module_name)
 {
@@ -1049,9 +1049,9 @@ function view_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
     else
         $smarty->assign("check_isPrivate", "checked");
 
-
+    $clastname                = isset($contactData['last_name'])?$contactData['last_name']:"";
     $arrData['name']          = isset($_POST['name'])?$_POST['name']:$contactData['name'];
-    $arrData['last_name']     = isset($_POST['last_name'])?$_POST['last_name']:isset($contactData['last_name'])?$contactData['last_name']:"";
+    $arrData['last_name']     = isset($_POST['last_name'])?$_POST['last_name']:$clastname;
     $arrData['work_phone']    = isset($_POST['work_phone'])?$_POST['work_phone']:$contactData['work_phone'];
     $arrData['cell_phone']    = isset($_POST['cell_phone'])?$_POST['cell_phone']:$contactData['cell_phone'];
     $arrData['home_phone']    = isset($_POST['home_phone'])?$_POST['home_phone']:$contactData['home_phone'];
