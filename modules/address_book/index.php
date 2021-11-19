@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Tue 17 Aug 2021 08:35:37 AM EDT, nicolas@issabel.com
+  $Id: index.php, Thu 20 May 2021 03:54:12 PM EDT, nicolas@issabel.com
 */
 
 function _moduleContent(&$smarty, $module_name)
@@ -858,8 +858,6 @@ function save_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
             $emaildb      = isset($_POST['email'])?$_POST['email']:"";
         }
         else if($directory=="internal"){
-            $namedb       = $contactData['name'];
-            $last_namedb  = '';
             $departmentdb = isset($_POST['department'])?$_POST['department']:"";
             $imdb         = isset($_POST['im'])?$_POST['im']:"";
         }
@@ -1261,6 +1259,11 @@ function getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB
     $imgDefault = $_SERVER['DOCUMENT_ROOT']."/modules/$module_name/images/Icon-user.png";
     $padress_book = new paloAdressBook($pDB);
     $contactData = $padress_book->contactData($contact_id, $id_user,$directory,true,$dsnAsterisk);
+    if(is_null($contactData)) {
+	    $contactData['email']='';
+	    $contactData['id']=0;
+	    $contactData['id_on_address_book_db']=0;
+    }
     $idt = ($directory=="external")?$contactData['id']:$contactData['id_on_address_book_db'];
 
     $pic = isset($contactData['picture'])?$contactData['picture']:0;

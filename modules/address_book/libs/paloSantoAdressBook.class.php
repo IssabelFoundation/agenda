@@ -25,7 +25,7 @@
 
 //ini_set("display_errors", true);
 if (file_exists("/var/lib/asterisk/agi-bin/phpagi-asmanager.php")) {
-require_once "/var/lib/asterisk/agi-bin/phpagi-asmanager.php";
+    require_once "/var/lib/asterisk/agi-bin/phpagi-asmanager.php";
 }
 global $arrConf;
 //include_once("$arrConf[basePath]/libs/paloSantoACL.class.php");
@@ -60,13 +60,13 @@ a array with the field "total" containing the total of records.
     function getAddressBook($limit=NULL, $offset=NULL, $field_name=NULL, $field_pattern=NULL, $count=FALSE, $iduser=NULL)
     {
         // SIEMPRE se debe filtrar por usuario activo. Véase bug Elastix #1529.
-    	$sql = 'SELECT '.($count ? 'COUNT(*) AS total' : '*, telefono work_phone').' FROM contact';
+        $sql = 'SELECT '.($count ? 'COUNT(*) AS total' : '*, telefono work_phone').' FROM contact';
         $whereFields = array('(iduser = ? OR status = ?)',"directory='external'");
         $sqlParams = array($iduser, 'isPublic');
 
         // Filtro por campo específico. Por omisión se filtra por id
         if (!is_null($field_name) and !is_null($field_pattern)) {
-        	if (!in_array($field_name, array('id','name','last_name','telefono','cell_phone','home_phone',
+            if (!in_array($field_name, array('id','name','last_name','telefono','cell_phone','home_phone',
                 'fax1','fax2','extension','email','province','city','iduser','address','company','company_contact','contact_rol','notes','status')))
                 $field_name = 'id';
             $cond = "$field_name LIKE ?";
@@ -82,7 +82,7 @@ a array with the field "total" containing the total of records.
         $sql .= ' ORDER BY last_name, name';
 
         if (!is_null($limit)) {
-        	$sql .= ' LIMIT ?';
+            $sql .= ' LIMIT ?';
             $sqlParams[] = (int)$limit;
         }
         if (!is_null($offset) && $offset > 0) {
@@ -92,7 +92,7 @@ a array with the field "total" containing the total of records.
 
         $result = $this->_DB->fetchTable($sql, true, $sqlParams);
         if (!is_array($result)) {
-        	$this->errMsg = $this->_DB->errMsg;
+            $this->errMsg = $this->_DB->errMsg;
         }
         return $result;
     }
@@ -121,7 +121,7 @@ a array with the field "total" containing the total of records.
 
     function getAddressBookByCsv($limit=NULL, $offset=NULL, $field_name=NULL, $field_pattern=NULL, $count=FALSE, $iduser=NULL)
     {
-    	return $this->getAddressBook($limit, $offset, $field_name, $field_pattern, $count, $iduser);
+        return $this->getAddressBook($limit, $offset, $field_name, $field_pattern, $count, $iduser);
     }
 
     function contactData($id, $id_user, $directory, $isAdminGroup, $dsn)
@@ -135,18 +135,21 @@ a array with the field "total" containing the total of records.
 
             $result=$this->_DB->getFirstRowQuery($query, true, $params);
             if(!$result && $result==null && count($result) < 1)
-                return false;
+                return;
             else
                 return $result;
         }
         else if($directory == "internal" && $isAdminGroup){
             $matriz = $this->getDeviceFreePBX_Completed($dsn,1,0,"telefono",$id,FALSE);
-            $result = $matriz[0];
-
-            if(!$result['exists_on_address_book_db'])
-                unset($result['id']);
+            if(count($matriz)>0) {
+                $result = $matriz[0];
+                if(!$result['exists_on_address_book_db'])
+                    unset($result['id']);
 
             return $result;
+        } else {
+                return;
+        }
         }
     }
 
@@ -169,7 +172,7 @@ a array with the field "total" containing the total of records.
     function updateContact($data,$id)
     {
         $queryUpdate = "update contact set name=?, last_name=?, telefono=?, cell_phone=?, home_phone=?, fax1=?, fax2=?, email=?, iduser=?, picture=?, province=?, city=?, address=?, company=?, company_contact=?, contact_rol=?, directory=?, notes=?, status=?, department=?, im=? where id=?";
-	$data[] = $id;
+        $data[] = $id;
         $result = $this->_DB->genQuery($queryUpdate, $data);
         //echo $this->_DB->errMsg;
         return $result;
@@ -180,7 +183,7 @@ a array with the field "total" containing the total of records.
         $query =     " SELECT count(*) as total FROM contact "
                     ." WHERE name=? and last_name=?"
                     ." and telefono=? and directory=?";
-	$arrParam = array($name,$last_name,$telefono,$directory);
+    $arrParam = array($name,$last_name,$telefono,$directory);
         $result=$this->_DB->getFirstRowQuery($query, true, $arrParam);
         if(!$result)
             $this->errMsg = $this->_DB->errMsg;
@@ -274,9 +277,9 @@ a array with the field "total" containing the total of records.
 
         $query = "SELECT dial, description FROM devices WHERE id=?";
         $result = $pDB->getFirstRowQuery($query, TRUE, array($id));
-        if($result != FALSE)
+        if($result != FALSE) {
             return $result;
-        else{
+        } else {
             $this->errMsg = $pDB->errMsg;
             return FALSE;
         }
@@ -309,17 +312,17 @@ a array with the field "total" containing the total of records.
         $query   = "SELECT $fields FROM devices ";
 
         $strWhere = "";
-	$arrParam = array();
+        $arrParam = array();
         if(!is_null($field_name) and !is_null($field_pattern))
         {
             if($field_name=='name'){
                 $strWhere .= " description like ? ";
-		$arrParam[] = $field_pattern;
-	    }
+                $arrParam[] = $field_pattern;
+            }
             else if($field_name=='telefono'){
                 $strWhere .= " id like ? ";
-		$arrParam[] = $field_pattern;
-	    }
+                $arrParam[] = $field_pattern;
+            }
         }
 
         // Clausula WHERE aqui
@@ -330,19 +333,18 @@ a array with the field "total" containing the total of records.
 
         // Limit
         if(!is_null($limit)){
-	    $limit = (int)$limit;
+            $limit = (int)$limit;
             $query .= " LIMIT $limit ";
-	}
+        }
 
         if(!is_null($offset) and $offset > 0){
-	    $offset = (int)$offset;
+            $offset = (int)$offset;
             $query .= " OFFSET $offset";
-	}
-
+        }
 
         $pDB = new paloDB($dsn);
-        if($pDB->connStatus)
-            return false;
+        if($pDB->connStatus) { return false; }
+
         $result = $pDB->fetchTable($query,true,$arrParam); //se consulta a la base asterisk
 
         return $result;
@@ -384,7 +386,7 @@ a array with the field "total" containing the total of records.
                 return $arrDevices;
             }
             else{
-                return false;//CASO ERROR
+                return array();//CASO ERROR
             }
         }
         else{
@@ -392,7 +394,7 @@ a array with the field "total" containing the total of records.
                 return $arrDevices[0]['total'];
             }
             else
-                return false; //CASO DE ERROR
+                return array(); //CASO DE ERROR
         }
     }
 
@@ -405,8 +407,10 @@ a array with the field "total" containing the total of records.
         {
             if(preg_match("/([[:alnum:]]*) => /i",$line, $regs))
             {
-                $arrVal = explode(",", $line);
+        $arrVal = explode(",", $line);
+        if(count($arrVal)>1) {
                 $result[$regs[1]] = $arrVal[2];
+            }
             }
         }
         return $result;
@@ -436,41 +440,41 @@ a array with the field "total" containing the total of records.
 
     function getLastContactInsertedId()
     {
-	$query = "SELECT seq FROM sqlite_sequence WHERE name='contact'";
-	$result = $this->_DB->getFirstRowQuery($query);
-	if($result === FALSE){
-	    $this->errMsg = $pDB->errMsg;
+    $query = "SELECT seq FROM sqlite_sequence WHERE name='contact'";
+    $result = $this->_DB->getFirstRowQuery($query);
+    if($result === FALSE){
+        $this->errMsg = $pDB->errMsg;
             return FALSE;
-	}
-	return $result[0];
+    }
+    return $result[0];
     }
 
 //Esta función redimensiona una imagen y la guarda. El parámetro $image contiene la ruta de la imagen a redireccionar, $width y $height son el ancho y alto original de la image, $new_width y $new_height son el nuevo ancho y alto, $format contiene el tipo de imagen (GIF,JPEG,PNG) y $destination es la ruta destino donde se guardará la imagen redimensionada, a esta ruta hay que agregar la extensión.
     function saveResizeImage($image,$width,$height,$new_width,$new_height,$format,$destination)
     {
-	$thumb = imagecreatetruecolor($new_width,$new_height);
-	switch($format){
-		case 1: //GIF
-			$source = imagecreatefromgif($image);
-			imagecopyresized($thumb,$source,0,0,0,0,$new_width,$new_height,$width,$height);
-			$destination .= ".gif";
-			imagegif($thumb,$destination);
-			return ".gif";
-		case 2: //JPEG
-			$source = imagecreatefromjpeg($image);
-			imagecopyresized($thumb,$source,0,0,0,0,$new_width,$new_height,$width,$height);
-			$destination .= ".jpg";
-			imagejpeg($thumb,$destination);
-			return ".jpg";
-		case 3: //PNG
-			$source = imagecreatefrompng($image);
-			imagecopyresized($thumb,$source,0,0,0,0,$new_width,$new_height,$width,$height);
-			$destination .= ".png";
-			imagepng($thumb,$destination);
-			return ".png";
-		default:
-			return FALSE;
-	}
+    $thumb = imagecreatetruecolor($new_width,$new_height);
+    switch($format){
+        case 1: //GIF
+            $source = imagecreatefromgif($image);
+            imagecopyresized($thumb,$source,0,0,0,0,$new_width,$new_height,$width,$height);
+            $destination .= ".gif";
+            imagegif($thumb,$destination);
+            return ".gif";
+        case 2: //JPEG
+            $source = imagecreatefromjpeg($image);
+            imagecopyresized($thumb,$source,0,0,0,0,$new_width,$new_height,$width,$height);
+            $destination .= ".jpg";
+            imagejpeg($thumb,$destination);
+            return ".jpg";
+        case 3: //PNG
+            $source = imagecreatefrompng($image);
+            imagecopyresized($thumb,$source,0,0,0,0,$new_width,$new_height,$width,$height);
+            $destination .= ".png";
+            imagepng($thumb,$destination);
+            return ".png";
+        default:
+            return FALSE;
+    }
     }
 }
 ?>
