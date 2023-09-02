@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Thu 20 May 2021 03:54:12 PM EDT, nicolas@issabel.com
+  $Id: index.php, Sat 15 Oct 2022 07:23:26 PM EDT, nicolas@issabel.com
 */
 
 function _moduleContent(&$smarty, $module_name)
@@ -104,6 +104,9 @@ function _moduleContent(&$smarty, $module_name)
             break;
         case 'getImage':
             $content = getImageContact($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2, $arrConf, $dsn_agi_manager, $dsnAsterisk);
+            break;
+        case 'microsip':
+            $content = addressBookMicrosip($pDB, $dsnAsterisk);
             break;
         default:
             $content = report_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2, $arrConf, $dsn_agi_manager, $dsnAsterisk);
@@ -347,7 +350,7 @@ function report_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $
     $extension	  = $pACL->getUserExtension($user);
     if(is_null($extension) || $extension==""){
 	if($pACL->isUserAdministratorGroup($user)){
-            $smarty->assign("mb_title", _tr("MESSAGE"));
+        $smarty->assign("mb_title", _tr("Message"));
 	    $smarty->assign("mb_message", "<b>"._tr("You don't have extension number associated with user")."</b>");
 	}else
 	    $smarty->assign("mb_message", "<b>"._tr("contact_admin")."</b>");
@@ -1233,8 +1236,54 @@ function getAction()
         return "transfer_call";
     else if(getParameter("action")=="getImage")
         return "getImage";
+    else if(getParameter("action")=="microsip")
+        return "microsip";
     else
         return "report";
+}
+
+function addressBookMicrosip($pDB, $dsnAsterisk) {
+
+	$return_json=array();
+	$return_json['refresh']=0;
+	$return_json['items']=array();
+
+	$query = "SELECT name || ' ' || last_name AS name, ifnull(name,'') as firstname, ifnull(last_name,'') as lastanme , ifnull(telefono,'') AS number, ifnull(home_phone,'') AS phone, ifnull(cell_phone,'') as mobile, ifnull(email,'') FROM contact";
+	$result = $pDB->fetchTable($query, true, array());
+	foreach($result as $idx=>$ct) {
+		$lastname = ($ct['lastname'])?$ct['lastname']:'';
+		$firstname = ($ct['firstname'])?$ct['firstname']:'';
+		$name = ($ct['name'])?$ct['name']:'';
+		$number = ($ct['number'])?$ct['number']:'';
+		$phone = ($ct['phone'])?$ct['phone']:'';
+		$mobile = ($ct['mobile'])?$ct['mobile']:'';
+		$email = ($ct['email'])?$ct['email']:'';
+
+		$item = array( "number"=> $number, "name"=> $name, "firstname"=> $firstname, "lastname"=> $lastname, "phone"=> $phone, "mobile"=> $mobile, "email"=> $email, "address"=> "", "city"=> "", "state"=> "", "zip"=> "", "comment"=> "", "presence"=> 0, "starred"=> 0, "info"=> "" );
+		$return_json['items'][]=$item;
+	}
+
+	$pDB2 = new paloDB($dsnAsterisk);
+	if($pDB2->connStatus) return false;
+
+	$query = "SELECT name as fullname, name as firstanme, name as lastname, '' as phone, extension, extension as number, '' as mobile, '' as email FROM users";
+	$result = $pDB2->fetchTable($query,true,array()); 
+	foreach($result as $idx=>$ct) {
+		$lastname = ($ct['lastname'])?$ct['lastname']:'';
+		$firstname = ($ct['firstname'])?$ct['firstname']:'';
+		$name = ($ct['name'])?$ct['name']:'';
+		$number = ($ct['number'])?$ct['number']:'';
+		$phone = ($ct['phone'])?$ct['phone']:'';
+		$mobile = ($ct['mobile'])?$ct['mobile']:'';
+		$email = ($ct['email'])?$ct['email']:'';
+
+		$item = array( "number"=> $number, "name"=> $name, "firstname"=> $firstname, "lastname"=> $lastname, "phone"=> $phone, "mobile"=> $mobile, "email"=> $email, "address"=> "", "city"=> "", "state"=> "", "zip"=> "", "comment"=> "", "presence"=> 0, "starred"=> 0, "info"=> "" );
+		$return_json['items'][]=$item;
+	}
+
+	header("Content-type: application/json; charset=utf-8");
+	echo json_encode($return_json);
+
 }
 
 function download_address_book($smarty, $module_name, $local_templates_dir, $pDB, $pDB_2, $arrConf, $dsn_agi_manager, $dsnAsterisk)
