@@ -2,15 +2,15 @@
 
 Summary: Issabel Agenda Module
 Name: issabel-agenda
-Version: 4.0.0
-Release: 4
+Version: 5.0.0
+Release: 1
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
-Requires(pre): issabelPBX >= 2.8.1-1
-Requires(pre): issabel-framework >= 2.4.0-14
+Requires(pre): issabelPBX >= 2.12.0-1
+Requires(pre): issabel-framework >= 5.0.0-1
 Requires: php-PHPMailer
 
 # commands: mv
