@@ -57,10 +57,12 @@ function _moduleContent(&$smarty, $module_name)
 function handleHTML_mainReport($smarty, $module_name, $local_templates_dir)
 {
     // Verificar si esta levantado el festival
+    /*
     if (!isFestivalActive()) {
         $smarty->assign('mb_title', _tr('Message'));
         $smarty->assign('mb_message', _tr('Festival is not up'));
     }
+    */
 
     $oForm = new paloForm($smarty, array(
         "event"   => array(
@@ -260,8 +262,8 @@ function handleJSON_phone_numbers($smarty, $module_name, $local_templates_dir)
 
     require_once 'modules/address_book/libs/paloSantoAdressBook.class.php';
     load_language_module('address_book');
-
-    $pACL    = new paloACL(new paloDB($arrConf['issabel_dsn']['acl']));
+    $pDB     = new paloDB($arrConf['issabel_dsn']['acl']);
+    $pACL    = new paloACL($pDB);
     $id_user = $pACL->getIdUser($_SESSION['issabel_user']);
 
     $directory_type = (isset($_POST['select_directory_type']) && $_POST['select_directory_type']=='External')
@@ -316,7 +318,8 @@ function handleJSON_phone_numbers($smarty, $module_name, $local_templates_dir)
         array("field" => "name","pattern" => ""));
 
     $dsnAsterisk = generarDSNSistema('asteriskuser', 'asterisk');
-    $padress_book = new paloAdressBook(new paloDB($arrConf['dsn_conn_database3']));
+    $pDB2     = new paloDB($arrConf['dsn_conn_database3']);
+    $padress_book = new paloAdressBook($pDB2);
     $limit = 20;
     $total = ($directory_type == 'external')
         ? $padress_book->getAddressBook(NULL, NULL, $field, $pattern, TRUE, $id_user)
