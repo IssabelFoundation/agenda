@@ -1,0 +1,58 @@
+<html>
+<header>
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/styles.css">
+  <link rel="stylesheet" href="/themes/{$THEMENAME}/help.css">
+</header>
+<body>
+<h1>{$node_name}</h1>
+
+<p>Опція "Календар" дозволяє організувати свій день, тиждень і місяць, створюючи події та нагадування.</p>
+
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_calendar.png" border="0" />
+<p>Зображення 1</p></div>
+<br />
+<p>Щоб експортувати календар, натисніть посилання "Скачати Календар". <i>(Зображення 2)</i></p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_export_ical.png" border="0" />
+<p>Зображення 2</p></div>
+<br />
+<h2>Створіть нову подію</h2>
+<p>Щоб створити нову подію, натисніть кнопку "Створити Нову Подію" та заповніть необхідні поля. Якщо вся інформація правильна, натисніть "Зберегти". <i>(Зображення 3)</i></p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_newEvent.png" border="0" />
+<p>Зображення 3</p></div>
+<br />
+<p>Тут наведено опис кожного поля:</p>
+<table class="inline">
+<tr><th>Назва</th><th>Опис</th></tr>
+<tr><td>Назва</td><td>Назва події</td></tr>
+<tr><td>Опис</td><td>Короткий опис події</td></tr>
+<tr><td>Початок</td><td>Час початку події</td></tr>
+<tr><td>Кінець</td><td>Час завершення події</td></tr>
+<tr><td>Колір</td><td>Установіть колір для події</td></tr>
+<tr><td>Подзвонити</td><td>Коли подія почнеться, цей номер почне дзвонити.</td></tr>
+<tr><td>Нагадування</td><td>Нагадування перед початком події.</td></tr>
+<tr><td>Перетворення тексту на мовлення</td><td>Напишіть повідомлення, яке ви хочете почути від Ісабель, коли вам зателефонують на ваш внутрішній номер із повідомленням про подію. Ця опція доступна, якщо увімкнено послугу «Фестиваль» (перейдіть до АТС->Інструменти->Фестиваль).</td></tr>
+<tr><td>Електронні листи для сповіщення</td><td>Issabel автоматично надішле електронний лист до цього списку перед початком події.</td></tr>
+</table>
+<br />
+<h2>Редагувати/Видалити наявну подію</h2>
+<p>Щоб відредагувати або видалити існуючу подію, просто клацніть подію в календарі та натисніть кнопку "Редагувати" або "Видалити". <i>(Зображення 4 and 5)</i></p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_newEvent2.png" border="0" />
+<p>Зображення 4</p></div>
+<br />
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_viewEvent.png" border="0" />
+<p>Зображення 5</p></div>
+<br />
+<p>Ще один спосіб редагувати подію – клацнути край події та перетягнути по горизонталі (якщо ви бачите отвори за місяцями) або вертикально (якщо ви бачите події за тижнем або днем). Нижче наведено кілька прикладів.</p>
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_monthEvent.png" border="0" />
+<p>Зображення 6</p></div>
+<br />
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_weekEvent.png" border="0" />
+<p>Зображення 7</p></div>
+<br />
+<div class="hlp_figures"><img src="../modules/{$node_id}/images/hlp_dayEvent.png" border="0" />
+<p>Зображення 8</p></div>
+<br />
+<br />
+</body>
+</html>
+

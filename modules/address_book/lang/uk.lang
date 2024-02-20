@@ -1,0 +1,104 @@
+<?php
+/* vim: set expandtab tabstop=4 softtabstop=4 shiftwidth=4:
+  Codificación: UTF-8
+  +----------------------------------------------------------------------+
+  | Issabel version 4.0                                                  |
+  | http://www.issabel.org                                               |
+  +----------------------------------------------------------------------+
+  | Copyright (c) 2006 Palosanto Solutions S. A.                         |
+  +----------------------------------------------------------------------+
+  | The contents of this file are subject to the General Public License  |
+  | (GPL) Version 2 (the "License"); you may not use this file except in |
+  | compliance with the License. You may obtain a copy of the License at |
+  | http://www.opensource.org/licenses/gpl-license.php                   |
+  |                                                                      |
+  | Software distributed under the License is distributed on an "AS IS"  |
+  | basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See  |
+  | the License for the specific language governing rights and           |
+  | limitations under the License.                                       |
+  +----------------------------------------------------------------------+
+  | The Initial Developer of the Original Code is PaloSanto Solutions    |
+  |                                                                      |
+  | Translate by: Ltd LeNET                                              |
+  | Email: support@lenet.com.ua                                          |
+  +----------------------------------------------------------------------+
+  $Id: uk.lang,v 1.0 2015/10/17 15:11:00 Ltd LeNET Exp $ */
+global $arrLangModule;
+$arrLangModule=array(
+	"New Contact"					=> "Новий Контакт",
+	"Address Book"				=> "Адресна Книга",
+	"Are you sure you wish to delete the contact." => "Ви впевнені що хочете видалити контакт?",
+	"First Name"					=> "Ім'я",
+	"Last Name"					=> "Прізвище",
+	"Phone Number"				=> "Номер Телефону",
+	"Extension"					=> "Внутрішній Номер",
+	"The call couldn't be realized"		=> "Виклик не може бути здійснений",
+	"Internal"					=> "Внутрішній",
+	"External"					=> "Зовнішній",
+	"Call"						=> "Виклик",
+	"Phone Directory"				=> "Телефонний Довідник",
+	"CSV"						=> "CSV",
+	"Download Address Book"			=> "Завантажити Адресну Книгу",
+	"Can't exist a Name empty. Line"		=> "Поле Ім'я не може бути порожнім. Рядок",
+	"Can't exist a Last Name empty. Line"	=> "Поле Прізвище не може бути порожнім. Рядок",
+	"Can't exist a Phone Number/Job Phone Number empty. Line" => "Поля Телефон/Робочий Телефон не можуть бути порожніми.",
+	"Total contacts created"			=> "Усього створено контактів",
+	"Contact Data already exists"		=> "Дані Контакту вже існують",
+	"Header File Address Book"			=> "Заголовок файлу має бути в першому рядку і містити як мінімум три стовпці: Ім'я, Прізвище, Телефонний Номер",
+	"About Address Book"				=> "Якщо ви завантажуєте файл з даними контакту, які вже існують, дані такого контакту не будуть використовуватися.",
+	"Invalid file extension.- It must be csv" => "Недійсне розширення файлу. Фаїл має бути у форматі csv",
+	"There aren't contacts"			=> "Контакти відсутні",
+	"Address Book from CSV"			=> "Адресна книга з CSV",
+	"Page"						=> "Сторінка",
+	"Filter"					=> "Фільтр",
+	"Show"						=> "Показати",
+	"File"						=> "Файл",
+	"Possible file upload attack. Filename"	=> "Можлива атака завантаження файлу. ім'я файлу",
+	"Please read the lines in the footer"	=> "Будь ласка, ознайомтесь з інформацією внизу сторінки",
+	"Verify the header"				=> "Перевірте заголовок",
+	"At minimum there must be the columns"	=> "Має бути як мінімум три стовпці",
+	"Incomplete Columns"				=> "Неповні Стовпці",
+	"The file is incorrect or empty"		=> "Файл неправильний або порожній",
+	"You don't have extension number associated with user" => "Немає внутрішнього номера, асоційованого з поточним користувачем. Ви можете асоціювати внутрішній номер із вашим користувачем  <a href=\"javascript: openWindow('index.php?menu=userlist&amp;action=edit_userExtension&amp;rawmode=yes');\">ТУТ</a>",
+	"ERROR"					=> "ПОМИЛКА",
+	"Transfer"					=> "Трансфер",
+	"The transfer couldn't be realized, maybe you don't have any conversation now." => "Трансфер не може бути виконаний, можливо, зараз у вас немає активного виклику.",
+	"Not_allowed_change"				=> "Ці зміни заборонені вашому користувачеві.Цей контакт не асоційований з адресною книгою",
+	"picture"					=> "Фото",
+	"Address"					=> "Адреса",
+	"Company"					=> "Компанія",
+	"Department"					=> "Відділ",
+	"Cell Phone Number (SMS)"			=> "Мобільний Телефон (для СМС)",
+	"Home Phone Number"				=> "Домашній Телефон",
+	"Work's Phone Number"			=> "Робочий Телефон",
+	"Contact person in your Company"		=> "Контактна особа у вашій Компанії",
+	"Contact person's current position"	=> "Посада Контактної особи",
+	"FAX Number 1"				=> "Факс 1",
+	"FAX Number 2"				=> "Факс 2",
+	"Address IM (XMPP, Openfire)"		=> "Миттєві Повідомлення (XMPP, Openfire)",
+	"Province"					=> "Область",
+	"City"						=> "Місто",
+	"Manager"					=> "Керівник",
+	"Current position"				=> "Посада",
+	"Notes"					=> "Нотатки",
+	"Status"					=> "Статус",
+	"Private Contact"				=> "Особистий Контакт",
+	"Public Contact"				=> "Загальний Контакт",
+	"Invalid file extension.- It must be png or jpg or jpeg" => "Неправильне розширення файлу. Має бути png, jpg or jpeg і не містити спеціальних символів",
+	"Validation Error"				=> "Помилка Перевірки",
+	"Error to Upload"				=> "Помилка Завантаження Файлу",
+	"Type Contact"				=> "Тип Контакту",
+	"Internal Error"				=> "Будь ласка переконайтеся що параметри коректні",
+	"Not_allowed_contact"			=> "Цього контакту немає у вашій Адресній Книзі",
+	"Public editable"				=> "Загальнодоступний для редагування",
+	"Public not editable"			=> "Загальнодоступне редагувати його не можна",
+	"Private"					=> "Особистий",
+	"contact_admin"				=> "Немає внутрішнього номера, асоційованого з поточним користувачем. Будь ласка, зв'яжіться з адміністратором.",
+	"Show Filter"					=> "Показать Фильтр",
+	"Hide Filter"					=> "Приховати Фільтр",
+	"Filter applied "				=> "Фільтр застосований: ",
+	"internal"					=> "внутрішній",
+	"Name" 					=> "Ім'я",
+	"Message" 					=> "Повідомлення!",
+);
+?>
