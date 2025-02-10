@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Sat 15 Oct 2022 07:23:26 PM EDT, nicolas@issabel.com
+  $Id: index.php, Mon 10 Feb 2025 06:54:07 PM EST, nicolas@issabel.com
 */
 
 function _moduleContent(&$smarty, $module_name)
@@ -858,7 +858,7 @@ function save_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
             $last_namedb  = isset($_POST['last_name'])?$_POST['last_name']:"";
             $telefonodb   = isset($_POST['work_phone'])?$_POST['work_phone']:"";
             $statusdb     = isset($_POST['address_book_status'])?$_POST['address_book_status']:"";
-            $emaildb      = isset($_POST['email'])?$_POST['email']:"";
+            $emaildb      = isset($_POST['email'])?htmlspecialchars($_POST['email']):"";
         }
         else if($directory=="internal"){
             $departmentdb = isset($_POST['department'])?$_POST['department']:"";
