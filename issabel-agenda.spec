@@ -3,7 +3,7 @@
 Summary: Issabel Agenda Module
 Name: issabel-agenda
 Version: 5.0.0
-Release: 1
+Release: 2
 License: GPL
 Group:   Applications/System
 Source0: issabel-%{modname}-%{version}.tar.gz
