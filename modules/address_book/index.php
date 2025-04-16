@@ -19,7 +19,7 @@
   +----------------------------------------------------------------------+
   | The Initial Developer of the Original Code is PaloSanto Solutions    |
   +----------------------------------------------------------------------+
-  $Id: index.php, Mon 10 Feb 2025 06:54:07 PM EST, nicolas@issabel.com
+  $Id: index.php, Wed 16 Apr 2025 05:27:03 PM EDT, nicolas@issabel.com
 */
 
 function _moduleContent(&$smarty, $module_name)
@@ -1060,7 +1060,7 @@ function view_adress_book($smarty, $module_name, $local_templates_dir, $pDB, $pD
     $arrData['home_phone']    = isset($_POST['home_phone'])?$_POST['home_phone']:$contactData['home_phone'];
     $arrData['fax1']          = isset($_POST['fax1'])?$_POST['fax1']:$contactData['fax1'];
     $arrData['fax2']          = isset($_POST['fax2'])?$_POST['fax2']:$contactData['fax2'];
-    $arrData['email']         = isset($_POST['email'])?$_POST['email']:$contactData['email'];
+    $arrData['email']         = isset($_POST['email'])?htmlspecialchars($_POST['email']):$contactData['email'];
     $arrData['province']      = isset($_POST['province'])?$_POST['province']:$contactData['province'];
     $arrData['city']          = isset($_POST['city'])?$_POST['city']:$contactData['city'];
     $arrData['address']       = isset($_POST['address'])?$_POST['address']:$contactData['address'];
